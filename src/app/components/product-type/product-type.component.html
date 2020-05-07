@@ -1,0 +1,10 @@
+<div *ngFor="let product of productTypeService.products" class="col-md-3" style="margin-left: 2%;margin-bottom: 4%;display:inline-block;">
+    <div class="card" style="">
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ product.price }} €</h6>
+            <p class="card-text">{{ product.description }}</p>
+            <a href="{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;">Ir al producto</a>
+        </div>
+    </div>
+</div>
