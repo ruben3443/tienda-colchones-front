@@ -9,7 +9,7 @@ export class ProductTypeService {
 
   selectedProduct: Products;
   products: Products[];
-  readonly URL  = 'http://localhost:3000/';
+  readonly URL  = 'http://localhost:3000/products/';
   constructor(private http: HttpClient) { }
 
   getProductsByType(type=''){

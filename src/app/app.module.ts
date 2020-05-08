@@ -13,9 +13,10 @@ import { ProductTypeComponent } from './components/product-type/product-type.com
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: ':type', component: ProductTypeComponent},
-  { path: ':type/:id', component: ProductsComponent}
+  { path: 'users/login', component: LoginComponent},
+  { path: 'products/:type', component: ProductTypeComponent},
+  { path: 'products/:type/:id', component: ProductsComponent},
+  { path: 'users/logout', component: LoginComponent}
 ];
 
 @NgModule({

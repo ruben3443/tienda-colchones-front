@@ -11,15 +11,15 @@
               <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Productos</a>
               <ul class="collapse list-unstyled" id="homeSubmenu">
                   <li>
-                      <a href="/colchones">Colchones</a>
+                      <a href="/products/colchones">Colchones</a>
                   </li>
                   <li>
-                      <a href="/somieres">Somieres</a>
+                      <a href="/products/somieres">Somieres</a>
                   </li>
               </ul>
           </li>
           <li>
-              <a href="/login">Login</a>
+              <a href="/users/login">Login</a>
           </li>
       </ul>
   </div></div></nav>
@@ -32,7 +32,7 @@
 
               <button type="button" id="sidebarCollapse" class="btn btn-info">
                   <svg class="svg-inline--fa fa-align-left fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="align-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path></svg><!-- <i class="fas fa-align-left"></i> -->
-                  <span>Barra lateral</span>
+                  <span style="margin-left:2%">TIENDA COLCHONES Y SOMIERES</span>
               </button>
               <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <svg class="svg-inline--fa fa-align-justify fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="align-justify" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 84V44c0-8.837 7.163-16 16-16h416c8.837 0 16 7.163 16 16v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16zm16 144h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 256h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0-128h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-align-justify"></i> -->
@@ -40,10 +40,15 @@
 
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="nav navbar-nav ml-auto">
-                      <li class="nav-item active">
-                          <p class="nav-link">TIENDA COLCHONES Y SOMIERES</p>
-                      </li>
                   </ul>
+                  <div *ngIf="isLoged" class="nav-item active">
+                    <span class="nav-link" style="display:inline-block;">Hola {{name}} </span>
+                    <!-- <input type="button" ng-click="logout()" style="display:inline-block;color:blue" value="logout"> -->
+                    <form #loginForm="ngForm" (ngSubmit)="logout()" style="display: inline-block;">
+                        <input type="submit" value="logout" class="btn btn-secondary">
+                    </form>
+                    <!-- <a ng-click="logout()">logout</a> -->
+                  </div>
               </div>
           </div>
       </nav>

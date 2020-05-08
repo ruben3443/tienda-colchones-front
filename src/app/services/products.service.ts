@@ -10,7 +10,7 @@ export class ProductsService {
   selectedProduct: Products;
   product_type: String;
   
-  readonly URL  = 'http://localhost:3000/';
+  readonly URL  = 'http://localhost:3000/products/';
   constructor(private http: HttpClient) { }
 
 

@@ -1,5 +1,5 @@
 <div class="wrapper fadeInDown">
-    <div id="formContent">
+    <div *ngIf="!logged" id="formContent">
 
         <!-- Cabecera -->
         <div class="fadeIn first">
@@ -8,8 +8,8 @@
 
         <!-- Login Form -->
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-            <input type="text" id="login" class="fadeIn second" name="email" placeholder="email" #name="ngModel" [(ngModel)]="loginService.login_data.email">
-            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" #name="ngModel" [(ngModel)]="loginService.login_data.password">
+            <input type="text" id="login" class="fadeIn second" name="email" placeholder="email" required #name="ngModel" [(ngModel)]="loginService.login_data.email">
+            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required #name="ngModel" [(ngModel)]="loginService.login_data.password">
             <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
 
@@ -18,5 +18,8 @@
             <a class="underlineHover" href="#">¿Olvidaste la contraseña?</a>
         </div>
 
+    </div>
+    <div *ngIf="logged" id="formContent" style="padding:5%">
+        ¡Ya estas logeado {{name}}!
     </div>
 </div>
