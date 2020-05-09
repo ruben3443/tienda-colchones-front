@@ -29,7 +29,7 @@ export class LoginService {
     login_object).pipe(tap(
       (res) => {
         if(res){
-          this.saveToken(res.accessToken, res.expiresIn, res.name);
+          this.saveToken(res.accessToken, res.expiresIn, res.name, res.type);
         }
       })
     );
@@ -37,28 +37,36 @@ export class LoginService {
 
   logout(){
     this.token = '';
-    localStorage.removeItem("ACESS_TOKEN");
+    localStorage.removeItem("ACCESS_TOKEN");
     localStorage.removeItem("EXPIRES_AT");
     localStorage.removeItem("NAME");
+    localStorage.removeItem("TYPE");
   }
 
-  private saveToken(token: string, expiresIn: string, name: string): void{
+  private saveToken(token: string, expiresIn: string, name: string, type:number): void{
     var expiresAt = moment().add(expiresIn,'second');
-    localStorage.setItem("ACESS_TOKEN", token);
+    localStorage.setItem("ACCESS_TOKEN", token);
     localStorage.setItem("EXPIRES_AT", JSON.stringify(expiresAt.valueOf()));
     localStorage.setItem("NAME", name);
+    localStorage.setItem("TYPE", type.toString());
     this.token = token;
   }
 
-  private getToken(): string{
-    if(!this.token){
-      this.token = localStorage.getItem("ACCESS_TOKEN");
-    }
-    return this.token;
+  public getToken(): string{
+    return localStorage.getItem("ACCESS_TOKEN");
   }
 
   public isLoggedIn() {
     return moment().isBefore(this.getExpiration());
+  }
+
+  public isAdmin(){
+    const user_type = localStorage.getItem("TYPE");
+    if(user_type=="0"){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   getExpiration() {

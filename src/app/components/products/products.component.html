@@ -7,14 +7,18 @@
     <div class="row">
   
       <div class="col-md-8">
-        <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+        <img class="img-fluid" src="{{ product.imgPath }}" alt="">
       </div>
   
       <div class="col-md-4">
         <h3 class="my-3">Descripcion</h3>
         <p>{{ product.description }}</p>
         <h3 class="my-3">Precio</h3>
-        <p>{{ product.price }} €</p>
+        <p style="display:inline-block">{{ product.price }} €</p>
+        <h6 *ngIf="product.discount > 0" class="card-subtitle mb-2 text-muted" style="margin-left:5%;display:inline-block;color:red !important"> -{{ product.discount }}%</h6>
+        <h3 class="my-3">Unidades disponibles</h3>
+        <p>{{ product.units }}</p>
+        <br><a *ngIf="isAdmin" href="modify/products/{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;text-decoration: underline;color:blue">Modificar o eliminar producto</a>
       </div>
   
     </div>

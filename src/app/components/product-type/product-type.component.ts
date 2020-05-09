@@ -3,16 +3,19 @@ import { ProductTypeService } from '../../services/product-type.service';
 import { NgForm } from '@angular/forms';
 import { Products } from '../../models/products';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-product-type',
   templateUrl: './product-type.component.html',
   styleUrls: ['./product-type.component.less'],
-  providers: [ProductTypeService]
+  providers: [LoginService, ProductTypeService]
 })
 export class ProductTypeComponent implements OnInit {
 
-  constructor(private productTypeService: ProductTypeService, private route: ActivatedRoute) { }
+  constructor(private productTypeService: ProductTypeService, private route: ActivatedRoute,  private loginService: LoginService) { }
+  logged = this.loginService.isLoggedIn();
+  isAdmin = this.loginService.isAdmin();
 
   ngOnInit() {
     this.getProducts();

@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   isLoged = this.loginService.isLoggedIn();
+  isAdmin = this.loginService.isAdmin();
   name = this.loginService.getName();
 
   logout(){

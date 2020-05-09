@@ -1,5 +1,5 @@
 export class CreateProduct {
-    constructor(name= '',description= '', type = '', price = 0, units = 0, important = true, discount = 0){
+    constructor(name= '',description= '', type = '', price = 0, units = 0, important = true, discount = 0,imgPath = ''){
         this.name = name;
         this.description = description;
         this.type = type;
@@ -7,6 +7,7 @@ export class CreateProduct {
         this.units = units;
         this.important = important;
         this.discount = discount;
+        this.imgPath = imgPath;
     }
     name: string;
     description: string;
@@ -15,4 +16,5 @@ export class CreateProduct {
     units: number;
     important: boolean;
     discount: number;
+    imgPath: string;
 }

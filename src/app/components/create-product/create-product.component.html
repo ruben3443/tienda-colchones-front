@@ -1,5 +1,5 @@
 <div class="container">  
-    <form *ngIf="logged"  #create_productForm="ngForm" id="contact" style='margin-top:0%;'  (ngSubmit)="create_product(create_productForm)">
+    <form *ngIf="isAdmin"  #create_productForm="ngForm" id="contact" style='margin-top:0%;'  (ngSubmit)="create_product(create_productForm)">
       <h3>Crea un nuevo producto</h3>
       <fieldset>
         <input placeholder="Nombre del producto" type="text" tabindex="1" required autofocus name="name" #name="ngModel" [(ngModel)]="createProductService.new_product.name">
@@ -33,12 +33,14 @@
         <input placeholder="¿Tiene algún descuento? (indica porcentaje)" type="number" tabindex="5" required style="width: 100%;" name="discount" #name="ngModel" [(ngModel)]="createProductService.new_product.discount">
       </fieldset>
       <fieldset>
+        <input type="file" (change)="onFileChanged($event)" #fileInput>
+      </fieldset>
+      <fieldset>
         <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Crear</button>
-        <!-- <input type="submit" id="contact-submit" class="fadeIn fourth" value="Crear" data-submit="...Sending"> -->
       </fieldset>
     </form>
 
-    <div *ngIf="!logged" style="padding:5%">
-        ¡Necesitas estar logueado!
+    <div *ngIf="!isAdmin" style="padding:5%">
+        ¡Necesitas estar logueado como admin!
     </div>
   </div>

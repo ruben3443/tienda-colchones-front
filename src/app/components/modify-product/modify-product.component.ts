@@ -22,7 +22,9 @@ export class ModifyProductComponent implements OnInit {
     this.getProduct();
   }
 
+  isAdmin = this.loginService.isAdmin();
   logged = this.loginService.isLoggedIn();
+  selectedFile: File;
 
   getProduct(){
     var product_type = this.route.snapshot.paramMap.get('type');
@@ -35,7 +37,13 @@ export class ModifyProductComponent implements OnInit {
     }
 
     modify_product(form: NgForm){
-      this.productsService.updateProduct(form.value)
+      const uploadData = new FormData();
+      var date = new Date();
+      var timestamp = date.getTime();
+      var new_file_name = timestamp.toString() + "_" + this.selectedFile.name;
+      uploadData.append('myFile', this.selectedFile, new_file_name);
+
+      this.productsService.updateProduct(form.value, uploadData, new_file_name)
       .subscribe(res => {
         this.router.navigateByUrl("/");
       });
@@ -44,7 +52,12 @@ export class ModifyProductComponent implements OnInit {
     delete_product(form: NgForm){
       this.productsService.deleteProduct(form.value)
       .subscribe(res => {
+        // this.router.navigate(['/']);
         this.router.navigateByUrl("/");
       });
+    }
+
+    onFileChanged(event){
+      this.selectedFile = event.target.files[0];
     }
 }

@@ -1,7 +1,13 @@
-<div class="container">  
-    <form *ngIf="logged"  #create_productForm="ngForm" id="contact" style='margin-top:0%;'  (ngSubmit)="modify_product(create_productForm)">
+<div class="container">
+     
+    <form *ngIf="isAdmin"  #create_productForm="ngForm" id="contact" style='margin-top:0%;'  (ngSubmit)="modify_product(create_productForm)">
       <h3>Modifica el producto</h3>
-      <input style="display: none;" type="text" tabindex="0" required autofocus name="_id" #name="ngModel" [(ngModel)]="productsService.selectedProduct._id">
+      <fieldset>
+        <img class="img-fluid" src="{{ productsService.selectedProduct.imgPath }}" alt=""> 
+      </fieldset>
+      <fieldset>
+        <input style="display: none;" type="text" tabindex="0" required autofocus name="_id" #name="ngModel" [(ngModel)]="productsService.selectedProduct._id">
+      </fieldset>
       <fieldset>
         <input placeholder="Nombre del producto" type="text" tabindex="1" required autofocus name="name" #name="ngModel" [(ngModel)]="productsService.selectedProduct.name">
       </fieldset>
@@ -34,6 +40,9 @@
         <input placeholder="¿Tiene algún descuento? (indica porcentaje)" type="number" tabindex="5" required style="width: 100%;" name="discount" #name="ngModel" [(ngModel)]="productsService.selectedProduct.discount">
       </fieldset>
       <fieldset>
+        <input type="file" (change)="onFileChanged($event)" #fileInput>
+      </fieldset>
+      <fieldset>
         <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Modificar</button>
         <!-- <input type="submit" id="contact-submit" class="fadeIn fourth" value="Crear" data-submit="...Sending"> -->
       </fieldset>
@@ -41,7 +50,7 @@
         <button type="button" (click)="delete_product(create_productForm)">Eliminar</button>
       </fieldset>
     </form>
-    <div *ngIf="!logged" style="padding:5%">
-        ¡Necesitas estar logueado!
+    <div *ngIf="!isAdmin" style="padding:5%">
+        ¡Necesitas estar logueado como admin!
     </div>
   </div>

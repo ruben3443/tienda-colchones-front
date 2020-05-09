@@ -3,13 +3,13 @@
 
         <!-- Cabecera -->
         <div class="fadeIn first">
-            <p>Login del administrador</p>
+            <p>Accede a tu cuenta</p>
         </div>
 
         <!-- Login Form -->
         <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
             <input type="text" id="login" class="fadeIn second" name="email" placeholder="email" required #name="ngModel" [(ngModel)]="loginService.login_data.email">
-            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" required #name="ngModel" [(ngModel)]="loginService.login_data.password">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required #name="ngModel" [(ngModel)]="loginService.login_data.password">
             <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
 

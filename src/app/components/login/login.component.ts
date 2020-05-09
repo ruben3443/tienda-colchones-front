@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   }
 
   logged = this.loginService.isLoggedIn();
-
+  isAdmin = this.loginService.isAdmin();
+  
   login(form: NgForm){
     this.loginService.login(form.value)
       .subscribe(res => {
