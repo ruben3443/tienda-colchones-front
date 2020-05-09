@@ -1,0 +1,47 @@
+<div class="container">  
+    <form *ngIf="logged"  #create_productForm="ngForm" id="contact" style='margin-top:0%;'  (ngSubmit)="modify_product(create_productForm)">
+      <h3>Modifica el producto</h3>
+      <input style="display: none;" type="text" tabindex="0" required autofocus name="_id" #name="ngModel" [(ngModel)]="productsService.selectedProduct._id">
+      <fieldset>
+        <input placeholder="Nombre del producto" type="text" tabindex="1" required autofocus name="name" #name="ngModel" [(ngModel)]="productsService.selectedProduct.name">
+      </fieldset>
+      <fieldset>
+        <textarea placeholder="Descripcion del producto" type="text" tabindex="2" required name="description" #name="ngModel" [(ngModel)]="productsService.selectedProduct.description"></textarea>
+      </fieldset>
+      <fieldset>
+        <input placeholder="Precio del producto" type="number" tabindex="3" required style="width: 100%;" name="price" #name="ngModel" [(ngModel)]="productsService.selectedProduct.price">
+      </fieldset>
+      <fieldset>
+        <input placeholder="Unidades del producto" type="number" tabindex="4" required style="width: 100%;" name="units" #name="ngModel" [(ngModel)]="productsService.selectedProduct.units">
+      </fieldset>
+      <fieldset>
+        <select class="form-control" id="type" #name="ngModel" name="type" [(ngModel)]="productsService.selectedProduct.type">
+            <option value="colchones">Colchón</option>
+            <option value="somieres">Somier</option>
+        </select>
+    </fieldset>
+    <fieldset>
+        <div class="form-check" id="important">
+            <input class="form-check-input" type="radio" name="exampleRadios" name="important" value="true" checked #name="ngModel" [(ngModel)]="productsService.selectedProduct.important">
+            <label class="form-check-label" for="radio_destacado" style="margin-left: 5%;">Destacado</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" name="important" value="false" #name="ngModel" [(ngModel)]="productsService.selectedProduct.important">
+            <label class="form-check-label" for="radio_no_destacado" style="margin-left: 5%;">No destacado</label>
+        </div>
+    </fieldset>
+      <fieldset>
+        <input placeholder="¿Tiene algún descuento? (indica porcentaje)" type="number" tabindex="5" required style="width: 100%;" name="discount" #name="ngModel" [(ngModel)]="productsService.selectedProduct.discount">
+      </fieldset>
+      <fieldset>
+        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Modificar</button>
+        <!-- <input type="submit" id="contact-submit" class="fadeIn fourth" value="Crear" data-submit="...Sending"> -->
+      </fieldset>
+      <fieldset>
+        <button type="button" (click)="delete_product(create_productForm)">Eliminar</button>
+      </fieldset>
+    </form>
+    <div *ngIf="!logged" style="padding:5%">
+        ¡Necesitas estar logueado!
+    </div>
+  </div>

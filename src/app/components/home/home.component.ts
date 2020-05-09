@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
     this.homeService.getProducts()
       .subscribe(res => {
         this.homeService.products = res as Products[];
-        console.log(res);
       });
     }
 }
