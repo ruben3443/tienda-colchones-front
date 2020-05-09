@@ -10,13 +10,16 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductTypeComponent } from './components/product-type/product-type.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'users/login', component: LoginComponent},
   { path: 'products/:type', component: ProductTypeComponent},
   { path: 'products/:type/:id', component: ProductsComponent},
-  { path: 'users/logout', component: LoginComponent}
+  { path: 'users/logout', component: LoginComponent},
+  { path: 'create/product', component: CreateProductComponent},
+
 ];
 
 @NgModule({
@@ -25,7 +28,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ProductsComponent,
     LoginComponent,
-    ProductTypeComponent
+    ProductTypeComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
