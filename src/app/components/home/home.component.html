@@ -1,4 +1,4 @@
-<div *ngFor="let product of homeService.products" class="col-md-3" style="margin-left: 2%;margin-bottom: 4%;display:inline-block;">
+<!-- <div *ngFor="let product of homeService.products" class="col-md-3" style="margin-left: 2%;margin-bottom: 4%;display:inline-block;">
     <img class="card-img-top" src="{{ product.imgPath }}" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
@@ -8,17 +8,39 @@
         <a href="products/{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;">Ir al producto</a>
         <br><a *ngIf="isAdmin" href="modify/products/{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;">Modificar producto</a>
     </div>
-  </div>
-  <!-- <script>
-      function truncateText(selector, maxLength) {
-    var element = document.querySelector(selector),
-        truncated = element.innerText;
+</div> -->
 
-    if (truncated.length > maxLength) {
-        truncated = truncated.substr(0,maxLength) + '...';
-    }
-    return truncated;
-}
-//You can then call the function with something like what i have below.
-document.querySelector('p').innerText = truncateText('p', 20);
-  </script> -->
+
+<!-- <table>
+    <tr *ngFor="let product of homeService.products | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <div class="col-md-3" style="margin-left: 2%;margin-bottom: 4%;display:inline-block;">
+            <img class="card-img-top" src="{{ product.imgPath }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" style="display:inline-block;">{{ product.price }} €</h6>
+                <h6 *ngIf="product.discount > 0" class="card-subtitle mb-2 text-muted" style="margin-left:5%;display:inline-block;color:red"> -{{ product.discount }}%</h6>
+                <p class="card-text" style="max-height: 400px;text-overflow: ellipsis !important;white-space: nowrap;overflow: hidden;">{{ product.description }}</p>
+                <a href="products/{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;">Ir al producto</a>
+                <br><a *ngIf="isAdmin" href="modify/products/{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;">Modificar producto</a>
+            </div>
+        </div>
+    </tr>
+</table>
+<ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="homeService.products.length"></ngb-pagination> -->
+<h3 class="display-4" style="font-size: 30px;margin-left: 22%;">Estos son nuestros artículos destacados</h3><br><br>
+<ul>
+    <li *ngFor="let product of collection | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" class="col-md-3" style="margin-left: 5%;margin-bottom: 4%;display:inline-block;">
+        <div >
+            <img class="card-img-top" src="{{ product.imgPath }}" alt="Card image cap" style="object-fit: cover !important;width: 240px;height: 150px;">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" style="display:inline-block;">{{ product.price }} €</h6>
+                <h6 *ngIf="product.discount > 0" class="card-subtitle mb-2 text-muted" style="margin-left:5%;display:inline-block;color:red"> -{{ product.discount }}%</h6>
+                <p class="card-text" style="max-height: 400px;text-overflow: ellipsis !important;white-space: nowrap;overflow: hidden;">{{ product.description }}</p>
+                <a href="products/{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;">Ir al producto</a>
+                <br><a *ngIf="isAdmin" href="modify/products/{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;">Modificar producto</a>
+            </div>
+        </div>
+    </li>
+</ul>
+<pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
