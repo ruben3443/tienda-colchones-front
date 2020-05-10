@@ -7,13 +7,16 @@ import { Products } from '../models/products';
 })
 export class HomeService {
 
-  selectedProduct: Products;
-  products: Products[];
-  readonly URL  = 'http://localhost:3000/';
   constructor(private http: HttpClient) {
-    // this.products  = new Products();
   }
 
+  selectedProduct: Products; //Object to store selected product and use it in the controllers
+  products: Products[]; //Object to store obtained products and use them in the controllers
+  readonly URL  = 'http://localhost:3000/'; //URL base for this module
+  
+  /**
+   * Method to get all important products with HTTP GET request
+   */
   getProducts(){
     return this.http.get(this.URL);
   }

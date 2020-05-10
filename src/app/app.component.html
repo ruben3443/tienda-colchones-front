@@ -1,3 +1,7 @@
+<!--
+    This template creates the sidebar and upperbar with all its buttons and liks.
+-->
+
 <div class="wrapper">
   <!-- Sidebar  -->
   <nav id="sidebar" class="mCustomScrollbar _mCS_1 mCS-autoHide" style="overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
@@ -42,18 +46,16 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="nav navbar-nav ml-auto">
                   </ul>
-                  <div *ngIf="isLoged" class="nav-item active">
-                    <span class="nav-link" style="display:inline-block;">Hola {{name}} </span>
-                    <!-- <input type="button" ng-click="logout()" style="display:inline-block;color:blue" value="logout"> -->
+                  <div *ngIf="isLoged" class="nav-item active"> <!-- Checks if user is logged to render this part -->
+                    <span class="nav-link" style="display:inline-block;">Hola {{name}} </span> <!-- Message with users name -->
                     <form #loginForm="ngForm" (ngSubmit)="logout()" style="display: inline-block;">
-                        <input type="submit" value="logout" class="btn btn-secondary">
+                        <input type="submit" value="logout" class="btn btn-secondary"> <!-- Logout button -->
                     </form>
-                    <!-- <a ng-click="logout()">logout</a> -->
                   </div>
               </div>
           </div>
       </nav>
 
-      <router-outlet></router-outlet>
+      <router-outlet></router-outlet> <!-- Here will be included the content depending on wich URL we are (selected with the router module -->
   </div>
 </div>

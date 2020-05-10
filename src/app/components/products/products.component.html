@@ -1,3 +1,7 @@
+<!--
+    This template will show the product data
+-->
+
 <div *ngIf="productsService.selectedProduct as product" class="container">
 
     <h1 *ngIf="productsService.product_type as type" class="my-4">{{ type }}:
@@ -15,9 +19,11 @@
         <p>{{ product.description }}</p>
         <h3 class="my-3">Precio</h3>
         <p style="display:inline-block">{{ product.price }} €</p>
+        <!-- It will check if the product has discount to render it -->
         <h6 *ngIf="product.discount > 0" class="card-subtitle mb-2 text-muted" style="margin-left:5%;display:inline-block;color:red !important"> -{{ product.discount }}%</h6>
         <h3 class="my-3">Unidades disponibles</h3>
         <p>{{ product.units }}</p>
+        <!-- It will check id user is admin to render the product modification link -->
         <br><a *ngIf="isAdmin" href="modify/products/{{ product.type }}/{{ product._id }}" class="card-link" style="font-size: 15px;text-decoration: underline;color:blue">Modificar o eliminar producto</a>
       </div>
   

@@ -1,7 +1,12 @@
+<!--
+    This template will render the login form.
+-->
+
 <div class="wrapper fadeInDown">
+    <!-- Checks if user is logged to render the form -->
     <div *ngIf="!logged" id="formContent">
 
-        <!-- Cabecera -->
+        <!-- Header -->
         <div class="fadeIn first">
             <p>Accede a tu cuenta</p>
         </div>
@@ -19,6 +24,7 @@
         </div>
 
     </div>
+    <!-- If there is already a loged user it will show a message-->
     <div *ngIf="logged" id="formContent" style="padding:5%">
         ¡Ya estas logeado {{name}}!
     </div>

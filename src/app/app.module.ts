@@ -14,6 +14,7 @@ import { ProductTypeComponent } from './components/product-type/product-type.com
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { ModifyProductComponent } from './components/modify-product/modify-product.component';
 
+// Assigned URLs to each component
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'users/login', component: LoginComponent},

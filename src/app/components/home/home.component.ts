@@ -13,26 +13,25 @@ import { LoginService } from '../../services/login.service';
 export class HomeComponent implements OnInit {
 
   constructor(private homeService: HomeService,  private loginService: LoginService) { }
-  isAdmin = this.loginService.isAdmin();
-  logged = this.loginService.isLoggedIn();
-
-  // page = 1;
-  // collectionSize = 0;
-  // pageSize = 2;
-  p: number = 1;
-  collection: any[];  
-  itemsPerPage: number = 6;
 
   ngOnInit() {
     this.getProducts();
   }
 
+  isAdmin = this.loginService.isAdmin(); //To check if user is admin
+  logged = this.loginService.isLoggedIn(); //To check if user is logged
+
+  p: number = 1; //Initial page for the pagination service
+  itemsPerPage: number = 6; //Items per page for the pagination service
+
+  /**
+   * Method to get all the important products.
+   * It will call the service methos to get them
+   */
   getProducts(){
     this.homeService.getProducts()
       .subscribe(res => {
         this.homeService.products = res as Products[];
-        // this.collectionSize = this.homeService.products.length;
-        this.collection =  res as Products[];
       });
     }
 }

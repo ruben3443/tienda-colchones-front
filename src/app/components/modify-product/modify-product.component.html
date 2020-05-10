@@ -1,32 +1,53 @@
+<!--
+    This template will render the product modification form. It will show the actual product data
+-->
+
 <div class="container">
-     
+    <!-- It will check id user is admin to render the form -->
     <form *ngIf="isAdmin"  #create_productForm="ngForm" id="contact" style='margin-top:0%;'  (ngSubmit)="modify_product(create_productForm)">
+      
       <h3>Modifica el producto</h3>
+
+      <!-- Actual product img -->
       <fieldset>
         <img class="img-fluid" src="{{ productsService.selectedProduct.imgPath }}" alt=""> 
       </fieldset>
+
+      <!-- Form id field. It wont be displayed because is used for other purposes -->
       <fieldset>
         <input style="display: none;" type="text" tabindex="0" required autofocus name="_id" #name="ngModel" [(ngModel)]="productsService.selectedProduct._id">
       </fieldset>
+
+      <!-- Form name field -->
       <fieldset>
         <input placeholder="Nombre del producto" type="text" tabindex="1" required autofocus name="name" #name="ngModel" [(ngModel)]="productsService.selectedProduct.name">
       </fieldset>
+
+      <!-- Form description field -->
       <fieldset>
         <textarea placeholder="Descripcion del producto" type="text" tabindex="2" required name="description" #name="ngModel" [(ngModel)]="productsService.selectedProduct.description"></textarea>
       </fieldset>
+
+      <!-- Form price field -->
       <fieldset>
         <input placeholder="Precio del producto" type="number" tabindex="3" required style="width: 100%;" name="price" #name="ngModel" [(ngModel)]="productsService.selectedProduct.price">
       </fieldset>
+
+      <!-- Form units field -->
       <fieldset>
         <input placeholder="Unidades del producto" type="number" tabindex="4" required style="width: 100%;" name="units" #name="ngModel" [(ngModel)]="productsService.selectedProduct.units">
       </fieldset>
+
+      <!-- Form type selection field -->
       <fieldset>
         <select class="form-control" id="type" #name="ngModel" name="type" [(ngModel)]="productsService.selectedProduct.type">
             <option value="colchones">Colchón</option>
             <option value="somieres">Somier</option>
         </select>
-    </fieldset>
-    <fieldset>
+      </fieldset>
+
+      <!-- Form importancy radio-button field -->
+      <fieldset>
         <div class="form-check" id="important">
             <input class="form-check-input" type="radio" name="exampleRadios" name="important" value="true" checked #name="ngModel" [(ngModel)]="productsService.selectedProduct.important">
             <label class="form-check-label" for="radio_destacado" style="margin-left: 5%;">Destacado</label>
@@ -35,21 +56,30 @@
             <input class="form-check-input" type="radio" name="exampleRadios" name="important" value="false" #name="ngModel" [(ngModel)]="productsService.selectedProduct.important">
             <label class="form-check-label" for="radio_no_destacado" style="margin-left: 5%;">No destacado</label>
         </div>
-    </fieldset>
+      </fieldset>
+
+      <!-- Form discount field -->
       <fieldset>
         <input placeholder="¿Tiene algún descuento? (indica porcentaje)" type="number" tabindex="5" required style="width: 100%;" name="discount" #name="ngModel" [(ngModel)]="productsService.selectedProduct.discount">
       </fieldset>
+
+      <!-- Img input -->
       <fieldset>
         <input type="file" (change)="onFileChanged($event)" #fileInput>
       </fieldset>
+
+      <!-- Modification button -->
       <fieldset>
         <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Modificar</button>
-        <!-- <input type="submit" id="contact-submit" class="fadeIn fourth" value="Crear" data-submit="...Sending"> -->
       </fieldset>
+
+      <!-- Delete button -->
       <fieldset>
         <button type="button" (click)="delete_product(create_productForm)">Eliminar</button>
       </fieldset>
     </form>
+    
+    <!-- It will show a message if there is not a logged user or it isnt an admin-->
     <div *ngIf="!isAdmin" style="padding:5%">
         ¡Necesitas estar logueado como admin!
     </div>

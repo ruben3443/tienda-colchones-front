@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { NgForm } from '@angular/forms';
 import { Products } from '../../models/products';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../services/login.service';
@@ -14,13 +13,18 @@ import { LoginService } from '../../services/login.service';
 export class ProductsComponent implements OnInit {
 
   constructor(private productsService: ProductsService, private route: ActivatedRoute,  private loginService: LoginService) { }
-  product: Products;
-  logged = this.loginService.isLoggedIn();
-  isAdmin = this.loginService.isAdmin();
 
   ngOnInit() {
     this.getProduct();
   }
+
+  logged = this.loginService.isLoggedIn(); //To check if user is logged
+  isAdmin = this.loginService.isAdmin(); //To check if user is admin
+
+  /**
+   * Method to get the selected product.
+   * It will get the needed params (type and id) from the URL and it will send them to the service method
+   */
   getProduct(){
     var product_type = this.route.snapshot.paramMap.get('type');
     var product_id = this.route.snapshot.paramMap.get('id');

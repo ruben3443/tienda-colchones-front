@@ -13,14 +13,19 @@ import { LoginService } from './login.service';
 })
 export class CreateProductService {
 
-  new_product =  new CreateProduct();
-  readonly URL = 'http://localhost:3000';
-
   constructor(private loginService: LoginService, private http: HttpClient) { 
   }
 
-  headers = new HttpHeaders({'Authorization':this.loginService.getToken()});
+  new_product =  new CreateProduct();  //Object to store new product to be created
+  readonly URL = 'http://localhost:3000'; //URL base for this module
+  headers = new HttpHeaders({'Authorization':this.loginService.getToken()}); //Authorization header
 
+  /**
+   * Method to update product with HTTP POST request
+   * @param form 
+   * @param uploadFileData 
+   * @param fileName 
+   */
   create_product_service(form, uploadFileData: FormData, fileName: string): Observable<Products>{
 
     var product = new CreateProduct();
@@ -33,13 +38,15 @@ export class CreateProductService {
     product.discount = form.discount;
     product.imgPath = this.URL + "/imgs/" + fileName;
 
+    //It uploads the img first with HTTP POST request
     this.http.post(`${this.URL}/upload/file`, uploadFileData, {
       reportProgress: true,
       observe: 'events'
     })
-      .subscribe(event => {
-      });
+    .subscribe(event => {
+    });
       
+    //Finally uploads the product with HTTP POST request and authorization headers
     return this.http.post<Products>(`${this.URL}/products/${product.type}`
     , product, {headers: this.headers}).pipe(tap(
       (res) => {

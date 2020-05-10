@@ -8,17 +8,18 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  title = 'tienda-colchones';
+
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  title = 'tienda-colchones';
+  isLoged = this.loginService.isLoggedIn(); //To check if user is logged
+  isAdmin = this.loginService.isAdmin(); //To check if user is admin
+  name = this.loginService.getName(); //To get users name
 
-  isLoged = this.loginService.isLoggedIn();
-  isAdmin = this.loginService.isAdmin();
-  name = this.loginService.getName();
-
+  /* Method to call logout method in the login service and then redirect to homepage */
   logout(){
     this.loginService.logout();
     this.router.navigateByUrl("/");
